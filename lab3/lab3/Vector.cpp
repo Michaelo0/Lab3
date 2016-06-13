@@ -9,20 +9,20 @@ Vector::Vector()
 	n = 0;
 }
 
-Vector::Vector(Rect **pp, bool *flag, int n) 
+Vector::Vector(Rect **pp, bool *flag, int n) // flag flags' array if flag[0] is 0, then object is rectangle, or its paral
 {
 	this->n = n;
 	this->pp = new Rect*[n];
 	for (int i = 0; i < n; i++)
 		if (flag[i])
-			this->pp[i] = new Paral((Paral &)*pp[i]);
+		this->pp[i] = new Paral((Paral &)*pp[i]);
 		else this->pp[i] = new Rect(*pp[i]);
 
 }
 
 void Vector::print()
 {
-	cout << endl << "В векторе " << n << " объектов:";
+	cout << endl << "There are " << n << " objects in vector:";
 	for (int i = 0; i < n; i++)
 		pp[i]->print();
 }
@@ -34,11 +34,11 @@ Vector::~Vector()
 	{
 		for (int i = 0; i < n; i++)
 			delete pp[i];
-		delete[] pp;
+		delete[] pp; 
 	}
 }
 
-Vector& Vector::operator+(Rect & rect)
+Vector& Vector::operator+(Rect & rect) // add
 {
 	Rect **ppR = new Rect*[n + 1];
 	for (int i = 0; i < n; i++) ppR[i] = pp[i];
@@ -49,9 +49,9 @@ Vector& Vector::operator+(Rect & rect)
 	return *this;
 }
 
-Vector& Vector::operator-(Rect & rect) 
+Vector& Vector::operator-(Rect & rect) // Delete
 {
-	Rect **ppR = new Rect*[n - 1]; 
+	Rect **ppR = new Rect*[n - 1];
 	int flag = 0; 
 	int iDel; 
 	for (int i = 0; i < n; i++)
@@ -62,10 +62,10 @@ Vector& Vector::operator-(Rect & rect)
 			flag = 1; 
 			iDel = i; 
 		}
-	delete pp[iDel];   
+	delete pp[iDel];  
 	delete[] pp; 
 	pp = ppR; 
-	n--;
+	n--; 
 	return *this;
 }
 

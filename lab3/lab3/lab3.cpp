@@ -9,17 +9,17 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	double x, y, z;
+	double x, y,z;
 	setlocale(LC_ALL, "rus");
-	cout << "¬ведите ширину и длину: ";
+	cout << "Input width n length: ";
 	cin >> x >> y;
-	Rect * pRect1 = new Rect(x, y);
-	cout << "¬ведите ширину и длину, высоту: ";
+	Rect * pRect1=new Rect(x,y);
+	cout << "Input width n length, higth: ";
 	cin >> x >> y >> z;
-	Paral *pParal1 = new Paral(x, y, z);
+	Paral *pParal1=new Paral(x, y, z);
 	pRect1->print();
 	pParal1->print();
-
+	
 	Rect *p;
 	p = pParal1;
 	p->print();
@@ -28,23 +28,24 @@ int _tmain(int argc, _TCHAR* argv[])
 	Rect **pp1 = new Rect*[6]; 
 	pp1[0] = &r1; pp1[1] = &r2; pp1[2] = &r3;
 	pp1[3] = &par1; pp1[4] = &par2; pp1[5] = &par3;
-	bool flag[6] = { 0, 0, 0, 1, 1, 1 }; 
+	bool flag[6] = { 0, 0, 0, 1, 1, 1 }; // first 3 objects re rectangles, next 3 - paralls
 	Vector V1(pp1, flag, 6);
 	V1.print();
-	
+	// Add objects to vector
 	V1 + *pRect1;
 	V1 + *pParal1;
 	V1.print();
-
+	// Delete objects from vecor
 	V1 - *pRect1;
 	V1 - *pParal1;
 	V1.print();
-	cout << endl << "ѕечать отдельных объектов вектора через перегрузку  []";
-	for (int i = 0; i < 6; i++) 
+	cout << endl << "print of individual vector's objects by overload []";
+	for (int i = 0; i < 6; i++) // print 
 		V1[i].print();
 
 
 	system("pause");
-
+	
 	return 0;
 }
+
